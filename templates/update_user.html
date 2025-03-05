@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update User</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        form { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { padding: 8px; width: 100%; box-sizing: border-box; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; margin-bottom: 15px; }
+        .checkbox-group label { display: inline; margin-left: 5px; }
+        .back-link { display: block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update User</h1>
+        <a href="/maintenance/users" class="back-link">&laquo; Back to Users</a>
+        
+        {% if request.query_params.get("error") %}
+        <div class="error">
+            {{ request.query_params.get("error") }}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{ user_to_update.username }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">New Password (leave blank to keep current):</label>
+                <input type="password" id="password" name="password">
+            </div>
+            
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="text" id="full_name" name="full_name" value="{{ user_to_update.full_name }}" required>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="is_admin" name="is_admin" value="true" {% if user_to_update.is_admin %}checked{% endif %}>
+                <label for="is_admin">Admin User</label>
+            </div>
+            
+            <button type="submit">Update User</button>
+        </form>
+    </div>
+</body>
+</html>>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for membership in memberships %}
+                <tr>
+                    <td>{{ membership.id }}</td>
+                    <td>{{ membership.first_name }} {{ membership.last_name }}</td>
+                    <td>{{ membership.contact_name }}</td>
+                    <td>{{ membership.aadhar_card }}</td>
+                    <td>{{ membership.membership_type }}</td>
+                    <td>{{ membership.start_date }}</td>
+                    <td>{{ membership.end_date }}</td>
+                    {% if user.is_admin %}
+                    <td class="actions">
+                        <a href="/maintenance/update-membership/{{ membership.id }}" class="button">Update</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No memberships found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Book Availability</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        form { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; }
+        input { padding: 8px; width: 300px; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+        <div class="container">
+        <h1>Issue Book</h1>
+        <a href="javascript:history.back()">&laquo; Back</a>
+        
+        {% if request.query_params.get("error") %}
+        <div class="error">
+            {{ request.query_params.get("error") }}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            {% if book %}
+            <div class="form-group">
+                <label for="book_title">Book Title:</label>
+                <input type="text" id="book_title" value="{{ book.title }}" readonly>
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+            </div>
+            <div class="form-group">
+                <label for="book_author">Author:</label>
+                <input type="text" id="book_author" value="{{ book.author }}" readonly>
+            </div>
+            {% else %}
+            <div class="form-group">
+                <label for="book_id">Select Book:</label>
+                <select name="book_id" id="book_id" required>
+                    <option value="">-- Select a Book --</option>
+                    {% for book in books %}
+                    {% if book.status == 'Available' %}
+                    <option value="{{ book.id }}">{{ book.title }} by {{ book.author }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="member_id">Select Member:</label>
+                <select name="member_id" id="member_id" required>
+                    <option value="">-- Select a Member --</option>
+                    {% for member in memberships %}
+                    <option value="{{ member.id }}">{{ member.first_name }} {{ member.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="issue_date">Issue Date:</label>
+                <input type="date" id="issue_date" name="issue_date" value="{{ today_date }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="return_date">Return Date (Max 15 days):</label>
+                <input type="date" id="return_date" name="return_date" value="{{ max_return_date }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" name="remarks" rows="3" style="width: 300px;"></textarea>
+            </div>
+            
+            <button type="submit">Issue Book</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

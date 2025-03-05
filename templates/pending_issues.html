@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pending Issue Requests</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions { display: flex; gap: 10px; }
+        .button { padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+        h1 { text-align: center; }
+        .back-link { display: block; margin-bottom: 15px; }
+        .message { text-align: center; padding: 20px; background-color: #f9f9f9; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pending Issue Requests</h1>
+        <a href="/reports" class="back-link">&laquo; Back to Reports</a>
+        
+        {% if pending_requests %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Member</th>
+                    <th>Book/Movie</th>
+                    <th>Request Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in pending_requests %}
+                <tr>
+                    <td>{{ request.id }}</td>
+                    <td>{{ request.member_name }}</td>
+                    <td>{{ request.book_title }}</td>
+                    <td>{{ request.request_date }}</td>
+                    <td>{{ request.status }}</td>
+                    <td class="actions">
+                        <a href="/transactions/approve-request/{{ request.id }}" class="button">Approve</a>
+                        <a href="/transactions/reject-request/{{ request.id }}" class="button" style="background-color: #f44336;">Reject</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="message">
+            <p>No pending issue requests found.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+

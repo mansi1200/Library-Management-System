@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .option-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-decoration: none;
+            color: #333;
+            text-align: center;
+        }
+        .option-box:hover {
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #2196F3;
+        }
+        .back-link {
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #2196F3;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/book-categories" class="back-link">&laquo; Back to Categories</a>
+        
+        <h1>Transactions</h1>
+        <p>User and Admin access</p>
+        
+        <div class="options-container">
+            <a href="/transactions/check-availability" class="option-box">
+                <h2>Check Book Availability</h2>
+            </a>
+            
+            <a href="/transactions/issue-book" class="option-box">
+                <h2>Issue a Book</h2>
+            </a>
+            
+            <a href="/transactions/return-book" class="option-box">
+                <h2>Return a Book</h2>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Memberships</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions { display: flex; gap: 10px; }
+        .button { padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+        .add-button { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Memberships</h1>
+        <a href="/admin">&laquo; Back to Dashboard</a>
+        
+        <div style="margin: 20px 0;">
+            <a href="/maintenance/add-membership" class="button add-button">Add New Membership</a>
+        </div>
+        
+        {% if memberships %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Aadhar Card</th>
+                    <th>Membership Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for membership in memberships %}
+                <tr>
+                    <td>{{ membership.id }}</td>
+                    <td>{{ membership.first_name }} {{ membership.last_name }}</td>
+                    <td>{{ membership.contact_name }}</td>
+                    <td>{{ membership.aadhar_card }}</td>
+                    <td>{{ membership.membership_type }}</td>
+                    <td>{{ membership.start_date }}</td>
+                    <td>{{ membership.end_date }}</td>
+                    <td class="actions">
+                        <a href="/maintenance/update-membership/{{ membership.id }}" class="button">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No memberships found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+

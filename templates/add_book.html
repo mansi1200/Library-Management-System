@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Book or Movie</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        form { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { padding: 8px; width: 100%; box-sizing: border-box; }
+        .radio-group { display: flex; gap: 15px; }
+        .radio-group label { display: inline; margin-left: 5px; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Book or Movie</h1>
+        <a href="/maintenance/books">&laquo; Back to Books/Movies</a>
+        
+        {% if request.query_params.get("error") %}
+        <div class="error">
+            {{ request.query_params.get("error") }}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            <div class="form-group">
+                <label>Item Type:</label>
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="book" name="is_movie" value="false" checked>
+                        <label for="book">Book</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="movie" name="is_movie" value="true">
+                        <label for="movie">Movie</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="author">Author/Director:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="serial_number">Serial Number:</label>
+                <input type="text" id="serial_number" name="serial_number" required>
+            </div>
+            
+            <button type="submit">Add Item</button>
+        </form>
+    </div>
+</body>
+</html>

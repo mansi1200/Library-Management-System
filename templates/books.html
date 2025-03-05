@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Books</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions { display: flex; gap: 10px; }
+        .button { padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+        .add-button { margin-bottom: 20px; }
+        .available { color: green; }
+        .unavailable { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Books and Movies</h1>
+        <a href="/admin">&laquo; Back to Dashboard</a>
+        
+        <div style="margin: 20px 0;">
+            <a href="/maintenance/add-book" class="button add-button">Add New Book/Movie</a>
+        </div>
+        
+        {% if books %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Type</th>
+                    <th>Genre</th>
+                    <th>Serial Number</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ "Movie" if book.is_movie else "Book" }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>{{ book.serial_number }}</td>
+                    <td class="{{ 'available' if book.status == 'Available' else 'unavailable' }}">
+                        {{ book.status }}
+                    </td>
+                    <td class="actions">
+                        <a href="/maintenance/update-book/{{ book.id }}" class="button">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No books or movies found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+

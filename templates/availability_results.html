@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Availability Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .available { color: green; }
+        .unavailable { color: red; }
+        button { padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Availability Results</h1>
+        <a href="/transactions/check-availability">&laquo; Back to Search</a>
+        
+        {% if books %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ "Movie" if book.is_movie else "Book" }}</td>
+                    <td class="{{ 'available' if book.status == 'Available' else 'unavailable' }}">
+                        {{ book.status }}
+                    </td>
+                    <td>
+                        {% if book.status == 'Available' %}
+                        <a href="/transactions/issue-book?book_id={{ book.id }}">
+                            <button>Issue</button>
+                        </a>
+                        {% else %}
+                        Not Available
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No books found matching your criteria.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

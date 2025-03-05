@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Book/Movie</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        form { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { padding: 8px; width: 100%; box-sizing: border-box; }
+        .radio-group { display: flex; gap: 15px; }
+        .radio-group label { display: inline; margin-left: 5px; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; margin-bottom: 15px; }
+        .back-link { display: block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Book/Movie</h1>
+        {% if book.is_movie %}
+        <a href="/reports/master-movies" class="back-link">&laquo; Back to Movies</a>
+        {% else %}
+        <a href="/reports/master-books" class="back-link">&laquo; Back to Books</a>
+        {% endif %}
+        
+        {% if request.query_params.get("error") %}
+        <div class="error">
+            {{ request.query_params.get("error") }}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            <div class="form-group">
+                <label>Item Type:</label>
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="book" name="is_movie" value="false" {% if not book.is_movie %}checked{% endif %}>
+                        <label for="book">Book</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="movie" name="is_movie" value="true" {% if book.is_movie %}checked{% endif %}>
+                        <label for="movie">Movie</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" value="{{ book.title }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="author">Author/Director:</label>
+                <input type="text" id="author" name="author" value="{{ book.author }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" value="{{ book.genre }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="serial_number">Serial Number:</label>
+                <input type="text" id="serial_number" name="serial_number" value="{{ book.serial_number }}" readonly>
+            </div>
+            
+            <button type="submit">Update Item</button>
+        </form>
+    </div>
+</body>
+</html>

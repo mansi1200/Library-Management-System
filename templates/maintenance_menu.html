@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - Maintenance Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a {
+            text-decoration: none;
+            color: #2196F3;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/book-categories" class="back-link">&laquo; Back to Categories</a>
+        
+        <h1>Maintenance Menu</h1>
+        <p>Admin access only</p>
+        
+        <div class="options-container">
+            <div class="option-box">
+                <h2>Add/Update Memberships</h2>
+                <ul>
+                    <li><a href="/maintenance/add-membership">Add Membership</a></li>
+                    <li><a href="/reports/master-memberships">Update Membership</a></li>
+                </ul>
+            </div>
+            
+            <div class="option-box">
+                <h2>Add/Update Books</h2>
+                <ul>
+                    <li><a href="/maintenance/add-book">Add Book/Movie</a></li>
+                    <li><a href="/reports/master-books">Update Book</a></li>
+                    <li><a href="/reports/master-movies">Update Movie</a></li>
+                </ul>
+            </div>
+            
+            <div class="option-box">
+                <h2>Users Management</h2>
+                <ul>
+                    <li><a href="/maintenance/add-user">Add User</a></li>
+                    <li><a href="/maintenance/users">Update User</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- templates/reports_menu.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - Reports Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            text-decoration: none;
+            color: #333;
+        }
+        .option-box:hover {
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #2196F3;
+        }
+        .back-link {
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #2196F3;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/book-categories" class="back-link">&laquo; Back to Categories</a>
+        
+        <h1>Reports Menu</h1>
+        <p>User and Admin access</p>
+        
+        <div class="options-container">
+            <a href="/reports/active-issues" class="option-box">
+                <h2>Active Issues</h2>
+                <p>View all currently issued books and movies</p>
+            </a>
+            
+            <a href="/reports/master-memberships" class="option-box">
+                <h2>Master List of Memberships</h2>
+                <p>View all registered members</p>
+            </a>
+            
+            <a href="/reports/master-movies" class="option-box">
+                <h2>Master List of Movies</h2>
+                <p>View all movies in the inventory</p>
+            </a>
+            
+            <a href="/reports/master-books" class="option-box">
+                <h2>Master List of Books</h2>
+                <p>View all books in the inventory</p>
+            </a>
+            
+            <a href="/reports/overdue" class="option-box">
+                <h2>Overdue Returns</h2>
+                <p>View all items that are past their return date</p>
+            </a>
+            
+            <a href="/reports/pending-issues" class="option-box">
+                <h2>Pending Issue Requests</h2>
+                <p>View requests pending for approval</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

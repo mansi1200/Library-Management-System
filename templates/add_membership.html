@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Membership</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        form { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { padding: 8px; width: 100%; box-sizing: border-box; }
+        .radio-group { display: flex; gap: 15px; }
+        .radio-group label { display: inline; margin-left: 5px; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Membership</h1>
+        <a href="/maintenance/memberships">&laquo; Back to Memberships</a>
+        
+        {% if request.query_params.get("error") %}
+        <div class="error">
+            {{ request.query_params.get("error") }}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact_name">Contact Name:</label>
+                <input type="text" id="contact_name" name="contact_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact_address">Contact Address:</label>
+                <input type="text" id="contact_address" name="contact_address" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="aadhar_card">Aadhar Card No:</label>
+                <input type="text" id="aadhar_card" name="aadhar_card" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Membership Duration:</label>
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="6months" name="membership_type" value="6 months" checked>
+                        <label for="6months">6 Months</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="1year" name="membership_type" value="1 year">
+                        <label for="1year">1 Year</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="2years" name="membership_type" value="2 years">
+                        <label for="2years">2 Years</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Add Membership</button>
+        </form>
+    </div>
+</body>
+</html>

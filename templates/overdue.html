@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Overdue Returns</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .button { padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Overdue Returns</h1>
+        <a href="javascript:history.back()">&laquo; Back</a>
+        
+        {% if transactions %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Book/Movie Title</th>
+                    <th>Member</th>
+                    <th>Issue Date</th>
+                    <th>Due Return Date</th>
+                    <th>Days Overdue</th>
+                    <th>Estimated Fine</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.book.title }}</td>
+                    <td>{{ transaction.member.first_name }} {{ transaction.member.last_name }}</td>
+                    <td>{{ transaction.issue_date }}</td>
+                    <td>{{ transaction.return_date }}</td>
+                    <td>
+                        {% set days_overdue = (today - transaction.return_date).days %}
+                        {{ days_overdue }} days
+                    </td>
+                    <td>
+                        Rs. {{ days_overdue * 10 }}
+                    </td>
+                    <td>
+                        <a href="/transactions/return-book" class="button">Return</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No overdue books found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

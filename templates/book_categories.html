@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - Book Categories</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .menu-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .category-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .menu-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .menu-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+        
+        <div class="menu-section">
+            <h2>Categories of Books</h2>
+            <p>Please select which section you would like to access:</p>
+            
+            <div class="category-options">
+                {% if is_admin %}
+                <a href="/maintenance" class="menu-button">Maintenance Menu<br>(Admin access only)</a>
+                {% endif %}
+                <a href="/reports" class="menu-button">Reports Menu<br>(User and Admin access)</a>
+                <a href="/transactions" class="menu-button">Transactions<br>(User and Admin access)</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

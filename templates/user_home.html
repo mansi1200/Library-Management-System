@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .menu-section {
+            margin-bottom: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        h2 {
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #2196F3;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System - User Dashboard</h1>
+        
+        <div class="menu-section">
+            <h2>Reports</h2>
+            <ul>
+                <li><a href="/reports/active-issues">Active Issues</a></li>
+                <li><a href="/reports/overdue">Overdue Returns</a></li>
+            </ul>
+        </div>
+        
+        <div class="menu-section">
+            <h2>Transactions</h2>
+            <ul>
+                <li><a href="/transactions/check-availability">Check Book Availability</a></li>
+                <li><a href="/transactions/issue-book">Issue Book</a></li>
+                <li><a href="/transactions/return-book">Return Book</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

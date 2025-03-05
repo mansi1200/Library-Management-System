@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Master List of Memberships</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions { display: flex; gap: 10px; }
+        .button { padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+        h1 { text-align: center; }
+        .back-link { display: block; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Master List of Memberships</h1>
+        <a href="/reports" class="back-link">&laquo; Back to Reports</a>
+        
+        {% if memberships %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Aadhar Card</th>
+                    <th>Membership Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    {% if user.is_admin %}
+                    <th>Actions</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.id }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.author }}</td>
+                    <td>{{ movie.genre }}</td>
+                    <td>{{ movie.serial_number }}</td>
+                    <td class="{{ 'available' if movie.status == 'Available' else 'unavailable' }}">
+                        {{ movie.status }}
+                    </td>
+                    {% if user.is_admin %}
+                    <td class="actions">
+                        <a href="/maintenance/update-book/{{ movie.id }}" class="button">Update</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No movies found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
